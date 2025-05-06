@@ -3,16 +3,10 @@ from openai import OpenAI
 import os
 
 
-def send_request(input, model="gpt-4.1-mini", temperature=0.5, max_tokens=1000):
-
-    # Load the api key
-    load_dotenv()
-    OPENAI_KEY = os.getenv("OPENAI_KEY")
-    if OPENAI_KEY is None:
-        return 401, None
-
+def send_request(input, model="gpt-4.1-mini", temperature=0.5, max_tokens=1000, api_key=None):
+    
     # Send the request to the API
-    client = OpenAI(api_key=OPENAI_KEY)
+    client = OpenAI(api_key=api_key)
     try:
         response = client.responses.create(
             model=model,

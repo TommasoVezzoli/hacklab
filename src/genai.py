@@ -5,7 +5,7 @@ from sentence_transformers import SentenceTransformer
 from src.openai_api import send_request, build_prompt
 
 
-def draft_future_complaint(complaints: str) -> str:
+def draft_future_complaint(complaints: str, api_key: str) -> str:
 
     # Load the complaints
     complaints_df = pd.read_csv(os.path.join(os.getcwd(), 'data', 'Complaints.csv'))
@@ -45,12 +45,10 @@ def draft_future_complaint(complaints: str) -> str:
         input=prompt,
         model="gpt-4.1-mini",
         temperature=0.9,
-        max_tokens=1000
+        max_tokens=1000,
+        api_key=api_key
     )
     if status_code != 200:
-        if status_code == 401:
-            return "Error: The API key is missing or invalid."
-        else:
             return "Error: Unable to process the request. Please try again later."
     
     next_complaint = response.output[0].content[0].text

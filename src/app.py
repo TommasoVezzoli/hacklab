@@ -46,7 +46,12 @@ st.download_button(
     file_name="sample_complaint.txt",
     mime="text/plain"
 )
-
+api_key = st.text_input(
+    label="OpenAI API Key",
+    type="password",
+    placeholder="sk-...",
+    help="Get your API key from https://platform.openai.com/account/api-keys"
+)
 do_draft = st.checkbox("Draft a future complaint", value=False)
 do_churn = st.checkbox("Predict churn", value=False)
 complaint = st.text_area(label="Insert the complaint here. Erase it to clear the prediction.")
@@ -71,7 +76,7 @@ if complaint:
         st.session_state.input_complaint = complaint
         
         with st.spinner("Analysing the complaint..."):
-            next_complaint = draft_future_complaint(complaint)
+            next_complaint = draft_future_complaint(complaint, api_key)
             st.session_state.draft_complaint = next_complaint
 
             models_path = os.path.join(os.getcwd(), "models")
