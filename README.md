@@ -69,6 +69,8 @@ Using the streamlit web application is extremely simple:
     streamlit run src/app.py
     ```
 
+Alternatively, the web app can be found at [this link](https://hacklab-ai-team.streamlit.app/).
+
 ## Visualization
 
 The visualization of topic modeling can be found at [this link](https://rawcdn.githack.com/beatricecitterio/hacklab/refs/heads/master/docs/ldavis5.html).
