@@ -3,7 +3,7 @@ pandas
 openai
 sentence-transformers
 scikit-learn
-pickle
+pickle-mixin
 joblib
 dotenv
 openpyxl
